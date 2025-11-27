@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практична робота: Магія Функцій</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f9ff;
+        }
+        .sheet-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sheet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .code-snippet {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #d946ef;
+            font-weight: bold;
+        }
+        .tablyk-avatar {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-green-600 text-white p-6 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                <div class="text-4xl tablyk-avatar">👾</div>
+                <div>
+                    <h1 class="text-3xl font-bold">Маршрутний Лист</h1>
+                    <p class="text-green-100">Тема: Практична магія функцій у Google Таблицях</p>
+                </div>
+            </div>
+            <div class="bg-white text-green-700 px-4 py-2 rounded-lg font-bold shadow">
+                9 Клас | Інформатика
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6">
+        
+        <!-- Intro -->
+        <div class="bg-white rounded-xl p-6 shadow-md mb-8 border-l-4 border-purple-500">
+            <h2 class="text-2xl font-bold mb-2 flex items-center">
+                <i class="fas fa-robot mr-2 text-purple-500"></i> Інструкція від Таблика
+            </h2>
+            <p class="mb-4">Привіт! Сьогодні ми перетворимо нудні цифри на корисну інформацію. Твоє завдання:</p>
+            <ol class="list-decimal list-inside space-y-2 ml-4">
+                <li>Відкрий Google таблицю - прикріплену до сьогоднішнього уроку.</li>
+                <li>Ознайомитись зі <a href="#cheat-sheet" class="text-blue-600 underline font-bold">Шпаргалкою</a> нижче.</li>
+                <li>Обрати <b>ОДИН</b> з трьох рівнів складності (Блоків) та виконати його.</li>
+                <li>Пройти тест у кінці сторінки.</li>
+            </ol>
+        </div>
+
+        <!-- Cheat Sheet Section -->
+        <section id="cheat-sheet" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-gray-700 text-center">📚 Шпаргалка: Книга Заклять</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="bg-blue-50 p-5 rounded-lg border border-blue-200">
+                    <h3 class="font-bold text-blue-700 mb-2"><i class="fas fa-calculator"></i> Математика</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><b>Сума:</b> <span class="code-snippet">=SUM(A1:A10)</span></li>
+                        <li><b>Середнє:</b> <span class="code-snippet">=AVERAGE(B1:B10)</span></li>
+                        <li><b>Максимум:</b> <span class="code-snippet">=MAX(C1:C10)</span></li>
+                        <li><b>Мінімум:</b> <span class="code-snippet">=MIN(C1:C10)</span></li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200">
+                    <h3 class="font-bold text-yellow-700 mb-2"><i class="fas fa-brain"></i> Логіка</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><b>Умова (IF):</b> <br><span class="code-snippet">=IF(A1>10; "Так"; "Ні")</span></li>
+                        <li><i>Читається як:</i> Якщо в A1 більше 10, пиши "Так", інакше "Ні".</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-green-50 p-5 rounded-lg border border-green-200">
+                    <h3 class="font-bold text-green-700 mb-2"><i class="fas fa-search"></i> Аналіз</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><b>Рахувати якщо:</b> <br><span class="code-snippet">=COUNTIF(B1:B10; ">5")</span></li>
+                        <li><i>Читається як:</i> Порахуй скільки клітинок більше 5.</li>
+                        <li><b>Округлення:</b> <span class="code-snippet">=ROUND(A1; 2)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Selection -->
+        <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">Обери свою місію</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            
+            <!-- Block 1: Easy -->
+            <div class="sheet-card bg-white rounded-xl overflow-hidden shadow-lg border-t-4 border-green-400 flex flex-col">
+                <div class="p-6 flex-grow">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Блок 1: "Мій Бюджет"</h3>
+                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Початківець</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Ідеально для тих, хто хоче розібратися з основами.</p>
+                    
+                    <div class="bg-gray-50 p-3 rounded text-sm mb-4">
+                        <p class="font-bold mb-2">Завдання:</p>
+                        <ol class="list-decimal ml-4 space-y-1 text-gray-700">
+                            <li>Створи таблицю: <b>Товар, Ціна, Кількість</b> (5-6 товарів).</li>
+                            <li>Додай стовпчик <b>"Вартість"</b>. Обчисли формулою: <i>Ціна * Кількість</i>.</li>
+                            <li>Внизу таблиці порахуй:
+                                <ul class="list-disc ml-4 mt-1">
+                                    <li>Загальну суму витрат (SUM)</li>
+                                    <li>Найдорожчий товар (MAX)</li>
+                                    <li>Середню ціну товару (AVERAGE)</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block 2: Medium -->
+            <div class="sheet-card bg-white rounded-xl overflow-hidden shadow-lg border-t-4 border-blue-400 flex flex-col">
+                <div class="p-6 flex-grow">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Блок 2: "Екзаменатор"</h3>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Впевнений</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Використовуємо логіку, щоб автоматично виставляти заліки.</p>
+                    
+                    <div class="bg-gray-50 p-3 rounded text-sm mb-4">
+                        <p class="font-bold mb-2">Завдання:</p>
+                        <ol class="list-decimal ml-4 space-y-1 text-gray-700">
+                            <li>Створи таблицю: <b>Прізвище, Бал (0-12)</b> (7 учнів).</li>
+                            <li>Додай стовпчик <b>"Результат"</b>.</li>
+                            <li>Використуй функцію <b>IF</b>:
+                                <ul class="list-disc ml-4 mt-1">
+                                    <li>Якщо бал >= 7, писати "Здав"</li>
+                                    <li>Якщо менше, писати "Не здав"</li>
+                                </ul>
+                            </li>
+                            <li>Окремо в клітинці порахуй кількість учнів, які здали (функція <b>COUNTIF</b>).</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block 3: Hard -->
+            <div class="sheet-card bg-white rounded-xl overflow-hidden shadow-lg border-t-4 border-purple-400 flex flex-col">
+                <div class="p-6 flex-grow">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Блок 3: "Бізнес-аналітик"</h3>
+                        <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">Профі</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Складні розрахунки зарплати з бонусами.</p>
+                    
+                    <div class="bg-gray-50 p-3 rounded text-sm mb-4">
+                        <p class="font-bold mb-2">Завдання:</p>
+                        <ol class="list-decimal ml-4 space-y-1 text-gray-700">
+                            <li>Створи таблицю: <b>Співробітник, Ставка, Продажі</b>.</li>
+                            <li>Додай стовпчик <b>"Бонус"</b>. Умова:
+                                <ul class="list-disc ml-4 mt-1">
+                                    <li>Якщо Продажі > 10000, то Бонус = 20% від Ставки (Ставка * 0.2)</li>
+                                    <li>Інакше Бонус = 0</li>
+                                </ul>
+                            </li>
+                            <li>Додай стовпчик <b>"До видачі"</b> (Ставка + Бонус).</li>
+                            <li>Знайди суму всіх бонусів компанії.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <section class="bg-white rounded-xl p-8 shadow-lg max-w-3xl mx-auto">
+            <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">🧠 Перевір себе!</h2>
+            
+            <div id="quiz-container">
+                <!-- Questions will be injected here -->
+            </div>
+            
+            <div id="result" class="hidden mt-6 text-center font-bold text-xl"></div>
+            
+            <button onclick="checkAnswers()" class="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-bold hover:bg-indigo-700 transition">Завершити тест</button>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 text-gray-500 text-sm">
+        <p>Створено для уроку інформатики | 9 Клас</p>
+    </footer>
+
+    <script>
+        // Quiz Data
+        const questions = [
+            {
+                id: 1,
+                text: "Який символ обов'язковий на початку будь-якої формули?",
+                options: ["#", "=", "?", "$"],
+                correct: 1 // Index of correct answer
+            },
+            {
+                id: 2,
+                text: "Яка функція знайде найбільше число у списку?",
+                options: ["SUM", "BIG", "MAX", "TOP"],
+                correct: 2
+            },
+            {
+                id: 3,
+                text: "Що робить функція COUNTIF?",
+                options: ["Рахує суму чисел", "Рахує кількість клітинок за умовою", "Рахує середнє значення", "Малює графік"],
+                correct: 1
+            },
+            {
+                id: 4,
+                text: "Як правильно записати: 'Якщо А1 більше 5, то 100, інакше 0'?",
+                options: ["=IF(A1>5; 100; 0)", "=IF(A1>5: 100: 0)", "=SUM(A1>5; 100; 0)", "IF A1>5 THEN 100"],
+                correct: 0
+            }
+        ];
+
+        // Render Quiz
+        const quizContainer = document.getElementById('quiz-container');
+        
+        questions.forEach((q, index) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = "mb-6 border-b border-gray-100 pb-4";
+            
+            let optionsHtml = '';
+            q.options.forEach((opt, optIndex) => {
+                optionsHtml += `
+                    <label class="block mt-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                        <input type="radio" name="q${index}" value="${optIndex}" class="mr-2 accent-indigo-600">
+                        ${opt}
+                    </label>
+                `;
+            });
+
+            qDiv.innerHTML = `
+                <p class="font-bold text-gray-700 mb-2">${index + 1}. ${q.text}</p>
+                ${optionsHtml}
+            `;
+            quizContainer.appendChild(qDiv);
+        });
+
+        // Check Answers
+        function checkAnswers() {
+            let score = 0;
+            let answeredAll = true;
+
+            questions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (!selected) {
+                    answeredAll = false;
+                } else if (parseInt(selected.value) === q.correct) {
+                    score++;
+                }
+            });
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.classList.remove('hidden');
+            
+            if (!answeredAll) {
+                resultDiv.textContent = "Будь ласка, дай відповідь на всі питання!";
+                resultDiv.className = "mt-6 text-center font-bold text-xl text-yellow-600";
+            } else {
+                let msg = "";
+                let color = "";
+                if (score === questions.length) {
+                    msg = `Чудово! ${score} з ${questions.length}. Ти справжній майстер таблиць! 🏆`;
+                    color = "text-green-600";
+                } else if (score >= questions.length / 2) {
+                    msg = `Непогано! ${score} з ${questions.length}. Але можна краще. 😉`;
+                    color = "text-blue-600";
+                } else {
+                    msg = `Результат: ${score} з ${questions.length}. Спробуй перечитати шпаргалку.`;
+                    color = "text-red-600";
+                }
+                resultDiv.textContent = msg;
+                resultDiv.className = `mt-6 text-center font-bold text-xl ${color}`;
+            }
+        }
+    </script>
+</body>
+</html>
