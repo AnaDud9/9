@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пр. робота №5: Майстер Діаграм</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0fdf4; /* Light green bg */
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #cbd5e1;
+            padding: 8px;
+            text-align: center;
+        }
+        .data-table th {
+            background-color: #f1f5f9;
+            font-weight: bold;
+        }
+        .data-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .variant-card {
+            transition: all 0.3s ease;
+        }
+        .variant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .tablyk-bounce {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white p-6 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                <div class="text-4xl tablyk-bounce">📊</div>
+                <div>
+                    <h1 class="text-3xl font-bold">Практична робота №5</h1>
+                    <p class="text-indigo-100">Створення діаграм та аналіз даних</p>
+                </div>
+            </div>
+            <div class="bg-white text-indigo-700 px-4 py-2 rounded-lg font-bold shadow">
+                9 Клас
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6">
+        
+        <!-- Intro / Theory -->
+        <div class="bg-white rounded-xl p-6 shadow-md mb-8 border-l-4 border-yellow-400">
+            <h2 class="text-2xl font-bold mb-4 flex items-center text-gray-800">
+                <i class="fas fa-lightbulb mr-2 text-yellow-500"></i> Шпаргалка від Таблика
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <h3 class="font-bold text-indigo-600 mb-2">🍰 Секторна (Pie)</h3>
+                    <p class="text-sm">Використовуй, коли треба показати <b>частку від цілого</b> (наприклад, склад піци або відсоток дівчат/хлопців у класі).</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <h3 class="font-bold text-indigo-600 mb-2">📊 Стовпчаста (Column)</h3>
+                    <p class="text-sm">Ідеальна для <b>порівняння</b> величин між собою (хто більше заробив, де вища гора).</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <h3 class="font-bold text-indigo-600 mb-2">📈 Графік (Line)</h3>
+                    <p class="text-sm">Показує <b>зміни в часі</b> (температура за тиждень, ріст курсу валют).</p>
+                </div>
+            </div>
+            <div class="mt-4 text-sm bg-yellow-50 p-3 rounded text-yellow-800">
+                <b>Як створити?</b> Виділи таблицю → Меню "Вставити" → "Діаграма".
+            </div>
+        </div>
+
+        <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Обери свій варіант</h2>
+        <p class="text-center text-gray-600 mb-8">Скопіюй дані таблиці у свій файл Google Sheets та виконай завдання.</p>
+
+        <!-- Variants Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            
+            <!-- Variant 1 -->
+            <div class="variant-card bg-white rounded-xl overflow-hidden shadow-lg border-t-4 border-green-400 flex flex-col">
+                <div class="p-6 flex-grow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Варіант 1: "Соцмережі"</h3>
+                        <span class="text-green-600 bg-green-100 px-2 py-1 rounded text-xs font-bold">Легкий</span>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-2 rounded mb-4 overflow-x-auto">
+                        <p class="text-xs text-gray-500 mb-1 italic">Скопіюй цю таблицю:</p>
+                        <table class="data-table bg-white">
+                            <thead>
+                                <tr><th>Соцмережа</th><th>Користувачі (млн)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Instagram</td><td>1500</td></tr>
+                                <tr><td>TikTok</td><td>1000</td></tr>
+                                <tr><td>Facebook</td><td>2900</td></tr>
+                                <tr><td>Snapchat</td><td>500</td></tr>
+                                <tr><td>YouTube</td><td>2500</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="space-y-2 text-sm">
+                        <p><b>Завдання:</b></p>
+                        <ul class="list-disc ml-4 space-y-1">
+                            <li>Побудуй <b>Секторну діаграму</b> (Pie chart).</li>
+                            <li>Додай назву діаграми: "Популярність мереж".</li>
+                            <li>Увімкни підписи даних (відсотки).</li>
+                        </ul>
+                        <div class="mt-4 bg-green-50 p-3 rounded border border-green-200">
+                            <p class="font-bold text-green-800">🔎 Аналіз даних:</p>
+                            <p class="italic">Яка соцмережа займає найбільшу частку ринку?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Variant 2 -->
+            <div class="variant-card bg-white rounded-xl overflow-hidden shadow-lg border-t-4 border-blue-400 flex flex-col">
+                <div class="p-6 flex-grow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Варіант 2: "Погода"</h3>
+                        <span class="text-blue-600 bg-blue-100 px-2 py-1 rounded text-xs font-bold">Середній</span>
+                    </div>
+
+                    <div class="bg-gray-50 p-2 rounded mb-4 overflow-x-auto">
+                        <p class="text-xs text-gray-500 mb-1 italic">Скопіюй цю таблицю:</p>
+                        <table class="data-table bg-white">
+                            <thead>
+                                <tr><th>Місяць</th><th>Температура (°C)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Січень</td><td>-4</td></tr>
+                                <tr><td>Березень</td><td>+5</td></tr>
+                                <tr><td>Травень</td><td>+18</td></tr>
+                                <tr><td>Липень</td><td>+28</td></tr>
+                                <tr><td>Вересень</td><td>+15</td></tr>
+                                <tr><td>Листопад</td><td>+2</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="space-y-2 text-sm">
+                        <p><b>Завдання:</b></p>
+                        <ul class="list-disc ml-4 space-y-1">
+                            <li>Побудуй <b>Графік</b> (Line chart) або Гістограму.</li>
+                            <li>Зроби лінію графіка <b>червоного кольору</b>.</li>
+                            <li>Підпиши вертикальну вісь як "Градуси".</li>
+                        </ul>
+                        <div class="mt-4 bg-blue-50 p-3 rounded border border-blue-200">
+                            <p class="font-bold text-blue-800">🔎 Аналіз даних:</p>
+                            <p class="italic">Яка різниця температур (амплітуда) між найхолоднішим та найтеплішим місяцем?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Variant 3 -->
+            <div class="variant-card bg-white rounded-xl overflow-hidden shadow-lg border-t-4 border-purple-400 flex flex-col">
+                <div class="p-6 flex-grow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Варіант 3: "Геймер"</h3>
+                        <span class="text-purple-600 bg-purple-100 px-2 py-1 rounded text-xs font-bold">Профі</span>
+                    </div>
+
+                    <div class="bg-gray-50 p-2 rounded mb-4 overflow-x-auto">
+                        <p class="text-xs text-gray-500 mb-1 italic">Скопіюй цю таблицю:</p>
+                        <table class="data-table bg-white">
+                            <thead>
+                                <tr><th>Жанр гри</th><th>2022 (год)</th><th>2023 (год)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>RPG</td><td>120</td><td>200</td></tr>
+                                <tr><td>Shooter</td><td>300</td><td>150</td></tr>
+                                <tr><td>Strategy</td><td>50</td><td>80</td></tr>
+                                <tr><td>Sport</td><td>100</td><td>110</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="space-y-2 text-sm">
+                        <p><b>Завдання:</b></p>
+                        <ul class="list-disc ml-4 space-y-1">
+                            <li>Побудуй <b>Стовпчасту діаграму</b> (Column chart) для порівняння двох років.</li>
+                            <li>Обов'язково має бути <b>Легенда</b> (пояснення, який колір — який рік).</li>
+                            <li>Зміни колір стовпчиків 2023 року на фіолетовий.</li>
+                        </ul>
+                        <div class="mt-4 bg-purple-50 p-3 rounded border border-purple-200">
+                            <p class="font-bold text-purple-800">🔎 Аналіз даних:</p>
+                            <p class="italic">Популярність якого жанру впала найбільше у 2023 році порівняно з 2022?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Quiz Section -->
+        <section class="bg-white rounded-xl p-8 shadow-lg max-w-3xl mx-auto border border-gray-200">
+            <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">🎓 Міні-тест: Ти зрозумів тему?</h2>
+            
+            <div id="quiz-container">
+                <!-- Question 1 -->
+                <div class="mb-6">
+                    <p class="font-bold text-gray-700 mb-2">1. Яка діаграма найкраще підходить, щоб показати зміну температури за тиждень?</p>
+                    <div class="space-y-2">
+                        <label class="block cursor-pointer hover:bg-gray-50 p-2 rounded"><input type="radio" name="q1" value="0" class="mr-2">Секторна (Pie)</label>
+                        <label class="block cursor-pointer hover:bg-gray-50 p-2 rounded"><input type="radio" name="q1" value="1" class="mr-2">Графік (Line)</label>
+                        <label class="block cursor-pointer hover:bg-gray-50 p-2 rounded"><input type="radio" name="q1" value="0" class="mr-2">Точкова</label>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="mb-6">
+                    <p class="font-bold text-gray-700 mb-2">2. Що таке "Легенда" на діаграмі?</p>
+                    <div class="space-y-2">
+                        <label class="block cursor-pointer hover:bg-gray-50 p-2 rounded"><input type="radio" name="q2" value="0" class="mr-2">Міф про створення діаграми</label>
+                        <label class="block cursor-pointer hover:bg-gray-50 p-2 rounded"><input type="radio" name="q2" value="1" class="mr-2">Пояснення, що означають кольори або лінії</label>
+                        <label class="block cursor-pointer hover:bg-gray-50 p-2 rounded"><input type="radio" name="q2" value="0" class="mr-2">Головний заголовок</label>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="mb-6">
+                    <p class="font-bold text-gray-700 mb-2">3. Якщо ти зміниш число в таблиці, чи зміниться діаграма?</p>
+                    <div class="space-y-2">
+                        <label class="block cursor-pointer hover:bg-gray-50 p-2 rounded"><input type="radio" name="q3" value="1" class="mr-2">Так, автоматично</label>
+                        <label class="block cursor-pointer hover:bg-gray-50 p-2 rounded"><input type="radio" name="q3" value="0" class="mr-2">Ні, треба малювати заново</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="result" class="hidden mt-6 text-center font-bold text-xl"></div>
+            
+            <button onclick="checkAnswers()" class="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-bold hover:bg-indigo-700 transition shadow-lg">Перевірити відповіді</button>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 text-gray-500 text-sm">
+        <p>Інформатика 9 клас | Практична робота №5</p>
+
+        <div>
+            <a href="./index.html">Попередній урок</a>
+            <a href="#">Наступний урок</a>
+        </div>
+    </footer>
+
+    <script>
+        function checkAnswers() {
+            let score = 0;
+            const answers = ['1', '1', '1']; // Correct values
+            let allAnswered = true;
+
+            for(let i=1; i<=3; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if(!selected) {
+                    allAnswered = false;
+                } else if(selected.value === answers[i-1]) {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.classList.remove('hidden');
+
+            if (!allAnswered) {
+                resultDiv.textContent = "Дай відповідь на всі 3 питання!";
+                resultDiv.className = "mt-6 text-center font-bold text-xl text-yellow-600";
+            } else if (score === 3) {
+                resultDiv.textContent = "🔥 3/3! Ти справжній аналітик!";
+                resultDiv.className = "mt-6 text-center font-bold text-xl text-green-600";
+            } else {
+                resultDiv.textContent = `Результат: ${score}/3. Спробуй ще раз!`;
+                resultDiv.className = "mt-6 text-center font-bold text-xl text-indigo-600";
+            }
+        }
+    </script>
+</body>
+</html>
