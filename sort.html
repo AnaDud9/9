@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сортування та Таблиці</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Стилі для адаптації на весь екран */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Повна висота вікна */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Запобігання прокручуванню тіла */
+        }
+        .slide-container {
+            width: 100vw; /* Повна ширина вікна */
+            height: 100vh; /* Повна висота вікна */
+            max-width: none;
+            max-height: none;
+            box-shadow: none; /* Прибрано тінь */
+            border-radius: 0; /* Прибрано заокруглення */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .slide {
+            flex-grow: 1;
+            padding: 3rem;
+            background-color: white;
+            display: none; /* Приховано за замовчуванням */
+            overflow-y: auto;
+        }
+        .slide.active {
+            display: block;
+        }
+        /* Стилі для таблиць */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+        th, td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e5e7eb; /* gray-200 */
+        }
+        th {
+            background-color: #f3f4f6; /* gray-100 */
+            font-weight: 600;
+        }
+        /* Адаптація для мобільних пристроїв */
+        @media (max-width: 640px) {
+            .slide {
+                padding: 1.5rem;
+            }
+            .slide h1 {
+                font-size: 3rem; /* Зменшення титулу */
+            }
+            .slide h2 {
+                font-size: 2rem; /* Зменшення заголовків */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+    <!-- Слайд 1: Титульний -->
+    <div class="slide active" data-slide="1">
+        <div class="flex flex-col h-full justify-center text-center">
+            <p class="text-3xl text-gray-500 mb-4">9 клас. Інформатика</p>
+            <h1 class="text-7xl font-extrabold text-indigo-700 mb-6 tracking-tight">СОРТУВАННЯ ДАНИХ</h1>
+            <h2 class="text-4xl font-light text-gray-800">Електронна таблиця як база знань про об’єкти</h2>
+        </div>
+    </div>
+
+    <!-- Слайд 2: Що таке "Об'єкт"? -->
+    <div class="slide" data-slide="2">
+        <h2 class="text-5xl font-bold text-indigo-600 mb-8">Що таке "Об'єкт"?</h2>
+        <p class="text-xl text-gray-700 mb-6"><strong>Об’єкт</strong> — це будь-яка річ, явище, чи особа, про яку ми збираємо відомості.</p>
+        
+        <div class="bg-gray-50 p-6 rounded-xl shadow-inner">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-700">У світі таблиць</h3>
+            <table class="text-lg">
+                <thead>
+                    <tr>
+                        <th>Приклад</th>
+                        <th>Об'єкт</th>
+                        <th>Відомості (Властивості/Поля)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-bold">Телефон</td>
+                        <td>Смартфон</td>
+                        <td>Модель, Пам'ять, Колір, Рік випуску</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">Учень</td>
+                        <td>Микола</td>
+                        <td>Прізвище, Клас, Ріст, Улюблені предмети</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">Фільм</td>
+                        <td>Кінострічка</td>
+                        <td>Назва, Жанр, Рік випуску, Рейтинг IMDb</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="mt-6 text-indigo-500 font-medium">СУТЬ: Електронна таблиця дозволяє подати <strong>однотипні об'єкти</strong> у структурованому вигляді.</p>
+    </div>
+
+    <!-- Слайд 3: Таблиця = База знань -->
+    <div class="slide" data-slide="3">
+        <h2 class="text-5xl font-bold text-indigo-600 mb-8">Таблиця = База знань</h2>
+        <p class="text-xl text-gray-700 mb-6">Як це виглядає в Google Таблицях:</p>
+        
+        <ul class="list-disc ml-6 space-y-4 text-2xl text-gray-800">
+            <li class="p-3 bg-green-50 rounded-lg shadow-sm">
+                Кожен об'єкт (наприклад, "Гаррі Поттер") займає <strong>один РЯДОК</strong>.
+            </li>
+            <li class="p-3 bg-blue-50 rounded-lg shadow-sm">
+                Кожна властивість об'єкта (наприклад, "Жанр") займає <strong>один СТОВПЕЦЬ</strong>.
+            </li>
+        </ul>
+
+        <table class="mt-12 w-1/2 mx-auto border-4 border-indigo-200 rounded-xl overflow-hidden shadow-lg text-2xl text-center">
+            <thead>
+                <tr class="bg-indigo-700 text-white">
+                    <th class="p-4">СТОВПЕЦЬ (Поле)</th>
+                    <th class="p-4">РЯДОК (Об'єкт)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bg-white p-4 font-semibold text-indigo-600">КАТЕГОРІЯ</td>
+                    <td class="bg-white p-4 font-semibold text-green-600">ПОВНИЙ ЗАПИС</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Слайд 4: Проблема: Хаос Даних -->
+    <div class="slide" data-slide="4">
+        <h2 class="text-5xl font-bold text-red-600 mb-8">Проблема: Хаос Даних</h2>
+        
+        <p class="text-xl text-gray-700 mb-6 <em>italic</em>">Уявіть, що у вас список із 500 книг. Як знайти найдешевшу? Або ту, що вийшла торік?</p>
+        
+        <div class="p-8 bg-red-50 border-l-4 border-red-500 rounded-xl shadow-md">
+            <h3 class="text-3xl font-extrabold text-red-700 mb-4">Нам потрібне СОРТУВАННЯ!</h3>
+            <p class="text-2xl text-gray-800"><strong>СОРТУВАННЯ</strong> — це впорядкування рядів (об'єктів) у таблиці за значеннями в одному або кількох стовпцях.</p>
+        </div>
+        <p class="mt-6 text-gray-500">Без порядку це як шукати голку в стозі сіна.</p>
+    </div>
+
+    <!-- Слайд 5: Типи Сортування (А → Я) -->
+    <div class="slide" data-slide="5">
+        <h2 class="text-5xl font-bold text-green-600 mb-8">Тип 1: За зростанням (А → Я)</h2>
+        <h3 class="text-3xl font-semibold mb-6">Впорядкування від меншого значення до більшого.</h3>
+        
+        <table class="text-lg shadow-md rounded-lg overflow-hidden">
+            <thead>
+                <tr class="bg-green-100 text-green-800">
+                    <th>Тип даних</th>
+                    <th>Сортування за зростанням</th>
+                    <th>Приклад</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-bold">Текст</td>
+                    <td>Від А до Я, від A до Z</td>
+                    <td class="font-mono">Прізвища: <strong>Андрієнко</strong> &rarr; <strong>Захарченко</strong></td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Число</td>
+                    <td>Від найменшого до найбільшого</td>
+                    <td class="font-mono">Ціна: <strong>150 грн</strong> &rarr; <strong>800 грн</strong></td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Дата</td>
+                    <td>Від найдавнішої до найновішої</td>
+                    <td class="font-mono">Рік: <strong>2005</strong> &rarr; <strong>2024</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p class="mt-8 p-3 bg-green-50 border-l-4 border-green-500 text-xl font-medium">Ключове слово: "найдешевші" (товари), "найстаріші" (документи).</p>
+    </div>
+
+    <!-- Слайд 6: Типи Сортування (Я → А) -->
+    <div class="slide" data-slide="6">
+        <h2 class="text-5xl font-bold text-purple-600 mb-8">Тип 2: За спаданням (Я → А)</h2>
+        <h3 class="text-3xl font-semibold mb-6">Впорядкування від більшого значення до меншого.</h3>
+        
+        <table class="text-lg shadow-md rounded-lg overflow-hidden">
+            <thead>
+                <tr class="bg-purple-100 text-purple-800">
+                    <th>Тип даних</th>
+                    <th>Сортування за спаданням</th>
+                    <th>Приклад</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-bold">Текст</td>
+                    <td>Від Я до А, від Z до A</td>
+                    <td class="font-mono">Назви: <strong>Футбол</strong> &rarr; <strong>Баскетбол</strong></td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Число</td>
+                    <td>Від найбільшого до найменшого</td>
+                    <td class="font-mono">Рейтинг: <strong>4.9</strong> &rarr; <strong>3.1</strong></td>
+                </tr>
+                <tr>
+                    <td class="font-bold">Дата</td>
+                    <td>Від найновішої до найдавнішої</td>
+                    <td class="font-mono">Рік: <strong>2024</strong> &rarr; <strong>2005</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p class="mt-8 p-3 bg-purple-50 border-l-4 border-purple-500 text-xl font-medium">Ключове слово: "Найпопулярніші" (за рейтингом), "найновіші" (новини).</p>
+    </div>
+
+    <!-- Слайд 7: Просте Сортування (Однорівневе) -->
+    <div class="slide" data-slide="7">
+        <h2 class="text-5xl font-bold text-indigo-600 mb-8">Просте Сортування (Приклад)</h2>
+        <h3 class="text-3xl font-semibold mb-6">Завдання: Знайти ТОП-3 найкращих фільмів.</h3>
+
+        <div class="flex space-x-8">
+            <div class="w-1/2">
+                <table class="text-lg shadow-md rounded-lg overflow-hidden">
+                    <thead>
+                        <tr class="bg-indigo-100">
+                            <th>Назва</th>
+                            <th>Рейтинг (Стовпець)</th>
+                            <th>Рік</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Зоряні війни</td><td>4.5</td><td>1977</td></tr>
+                        <tr><td>Титанік</td><td>4.9</td><td>1997</td></tr>
+                        <tr><td>Матриця</td><td>4.7</td><td>1999</td></tr>
+                        <tr><td>Володар Кілець</td><td>4.8</td><td>2001</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="w-1/2 p-4 bg-yellow-50 rounded-xl border-2 border-yellow-200 flex flex-col justify-center">
+                <p class="text-2xl font-semibold text-gray-700">Як сортуємо?</p>
+                <ul class="list-disc ml-6 text-xl mt-2 space-y-2">
+                    <li>Вибираємо стовпець <strong>"Рейтинг"</strong>.</li>
+                    <li>Сортуємо <strong>За спаданням (Я &rarr; А)</strong>.</li>
+                </ul>
+                <p class="mt-4 text-3xl font-extrabold text-yellow-700">Результат: Титанік (4.9) буде нагорі!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Слайд 8: Складне Сортування (Багаторівневе) -->
+    <div class="slide" data-slide="8">
+        <h2 class="text-5xl font-bold text-indigo-600 mb-8">Складне Сортування (Багаторівневе)</h2>
+        <h3 class="text-3xl font-semibold mb-6 text-gray-700">Коли одного критерію замало.</h3>
+
+        <div class="p-6 bg-blue-100 rounded-xl border-l-4 border-blue-500 shadow-lg">
+            <h4 class="text-2xl font-bold text-blue-800 mb-3">ПРАВИЛО ПРІОРИТЕТУ:</h4>
+            <ul class="list-decimal ml-6 text-xl space-y-2 text-gray-800">
+                <li>Спочатку сортуємо за <strong>Рівнем 1</strong>.</li>
+                <li>Потім, якщо значення збігаються (наприклад, 2 команди мають 20 балів), сортуємо за <strong>Рівнем 2</strong>.</li>
+                <li>І так далі...</li>
+            </ul>
+        </div>
+
+        <p class="mt-8 text-2xl font-medium text-gray-600">Це дозволяє створити точне ранжування, як у спортивних таблицях.</p>
+    </div>
+
+    <!-- Слайд 9: Приклад: Багаторівневе Сортування -->
+    <div class="slide" data-slide="9">
+        <h2 class="text-5xl font-bold text-indigo-600 mb-8">Приклад: Футбольні Команди</h2>
+        <h3 class="text-3xl font-semibold mb-6">Критерії сортування: Бали (↓) &rarr; Перемоги (↓)</h3>
+
+        <table class="text-xl shadow-md rounded-lg overflow-hidden">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th>Команда</th>
+                    <th>Бали (Рівень 1)</th>
+                    <th>Перемоги (Рівень 2)</th>
+                    <th>Місце</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Орел</td><td><strong>20</strong></td><td>10</td><td class="font-bold text-green-600">1</td></tr>
+                <tr><td>Лев</td><td><strong>20</strong></td><td>8</td><td class="font-bold text-yellow-600">2</td></tr>
+                <tr><td>Тигр</td><td>18</td><td>9</td><td class="font-bold text-orange-600">3</td></tr>
+                <tr><td>Пантера</td><td>15</td><td>7</td><td class="font-bold text-red-600">4</td></tr>
+            </tbody>
+        </table>
+
+        <div class="mt-6 p-4 bg-gray-50 rounded-xl border-l-4 border-indigo-400">
+            <p class="text-xl font-medium">Висновок: "Орел" і "Лев" мають однакові Бали (20), але "Орел" виграв більше матчів (10 &gt; 8), тому займає 1-ше місце.</p>
+        </div>
+    </div>
+
+    <!-- Слайд 10: Сортування в Google Таблицях -->
+    <div class="slide" data-slide="10">
+        <h2 class="text-5xl font-bold text-indigo-600 mb-8">Сортування в Google Таблицях</h2>
+        <h3 class="text-3xl font-semibold mb-6">Як це зробити за 3 кроки?</h3>
+
+        <ul class="list-none space-y-6 text-2xl text-gray-800">
+            <li class="flex items-start">
+                <span class="text-4xl font-extrabold text-red-500 mr-4">1.</span>
+                <span class="p-3 bg-red-100 rounded-lg shadow-md w-full"><strong>Виділити</strong> увесь діапазон даних (включно із заголовками).</span>
+            </li>
+            <li class="flex items-start">
+                <span class="text-4xl font-extrabold text-blue-500 mr-4">2.</span>
+                <span class="p-3 bg-blue-100 rounded-lg shadow-md w-full">Перейти в меню <strong>Дані</strong> (Data) &rarr; <strong>Сортувати діапазон</strong> (Sort range).</span>
+            </li>
+            <li class="flex items-start">
+                <span class="text-4xl font-extrabold text-green-500 mr-4">3.</span>
+                <span class="p-3 bg-green-100 rounded-lg shadow-md w-full">Натиснути <strong>"Додати інший стовпець сортування"</strong> для багаторівневого сортування.</span>
+            </li>
+        </ul>
+        <!-- Прибрано місце під скріншот -->
+    </div>
+
+    <!-- Слайд 11: Резюме -->
+    <div class="slide" data-slide="11">
+        <h2 class="text-5xl font-bold text-indigo-600 mb-8">Резюме</h2>
+        
+        <table class="text-xl shadow-2xl rounded-lg overflow-hidden border-4 border-indigo-200">
+            <thead>
+                <tr class="bg-indigo-700 text-white">
+                    <th>Операція</th>
+                    <th>Що це?</th>
+                    <th>Навіщо це потрібно?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-bold text-indigo-800">Таблиця</td>
+                    <td>Структурований набір рядків (об'єктів) і стовпців (властивостей).</td>
+                    <td>Упорядкування великої кількості однотипної інформації.</td>
+                </tr>
+                <tr>
+                    <td class="font-bold text-indigo-800">Сортування</td>
+                    <td>Впорядкування рядків за значенням стовпця.</td>
+                    <td>Швидкий пошук ТОП-значень, хронології або алфавітного порядку.</td>
+                </tr>
+                <tr>
+                    <td class="font-bold text-indigo-800">Багаторівневе</td>
+                    <td>Сортування за двома і більше критеріями.</td>
+                    <td>Для усунення збігів значень і більш точного ранжування.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="mt-8 text-center text-3xl font-light text-gray-600">Сортування — це ключ до аналізу даних!</p>
+    </div>
+
+    <!-- Слайд 12: Домашнє Завдання -->
+    <div class="slide" data-slide="12">
+        <h2 class="text-5xl font-bold text-indigo-600 mb-8">Домашнє Завдання</h2>
+        
+        <div class="p-8 bg-pink-100 rounded-xl shadow-lg border-2 border-pink-300">
+            <h3 class="text-3xl font-extrabold text-pink-800 mb-4">Практика в Google Таблицях:</h3>
+            <ol class="list-decimal ml-6 text-xl space-y-4 text-gray-800">
+                <li>Створіть таблицю з 5-7 ваших улюблених фільмів/ігор/пісень із трьома стовпцями: <strong>Назва</strong>, <strong>Ваша оцінка (1-10)</strong>, <strong>Рік випуску</strong>.</li>
+                <li>
+                    <strong>Виконайте просте сортування:</strong>
+                    <ul class="list-disc ml-6 mt-1">
+                        <li>Відсортуйте список за <strong>Рік випуску</strong> (за зростанням, А &rarr; Я).</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Виконайте складне сортування (Багаторівневе):</strong>
+                    <ul class="list-disc ml-6 mt-1">
+                        <li>Сортуйте за <strong>Вашою оцінкою</strong> (за спаданням).</li>
+                        <li>Потім, якщо оцінки однакові, за <strong>Рік випуску</strong> (за спаданням, найновіше нагорі).</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <p class="text-center text-4xl font-extrabold text-indigo-700 mt-10">Дякую за увагу!</p>
+    </div>
+
+    <!-- Панель навігації / Футер -->
+    <div class="flex flex-col sm:flex-row justify-between items-center w-full p-4 bg-gray-100 border-t border-gray-300 text-sm">
+        
+        <!-- Ліва частина: Посилання на уроки -->
+        <div class="flex space-x-4 mb-3 sm:mb-0">
+            <a href="./diagrams.html" class="text-indigo-600 hover:text-indigo-800 font-medium whitespace-nowrap">← Попередній урок</a>
+            <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium whitespace-nowrap">Наступний урок →</a>
+        </div>
+        
+        <!-- Центр: Індикатор -->
+        <span id="slideIndicator" class="text-gray-600 font-semibold text-lg mb-3 sm:mb-0">Слайд 1 / 12</span>
+        
+        <!-- Права частина: Кнопки Слайдів -->
+        <div class="flex space-x-3">
+            <button id="prevBtn" class="bg-indigo-500 text-white font-bold py-2 px-4 rounded-xl shadow-lg hover:bg-indigo-600 disabled:opacity-50 transition duration-150" disabled>
+                ←
+            </button>
+            <button id="nextBtn" class="bg-indigo-500 text-white font-bold py-2 px-4 rounded-xl shadow-lg hover:bg-indigo-600 transition duration-150">
+                →
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideIndicator = document.getElementById('slideIndicator');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function updateSlide() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            if (index === currentSlide) {
+                slide.classList.add('active');
+            }
+        });
+
+        // Оновлення індикатора
+        slideIndicator.textContent = `Слайд ${currentSlide + 1} / ${totalSlides}`;
+
+        // Оновлення кнопок навігації
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlide();
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateSlide();
+        }
+    });
+
+    // Ініціалізація
+    updateSlide();
+</script>
+
+</body>
+</html>
