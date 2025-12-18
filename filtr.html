@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фільтри в Google Таблицях</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Стилі для адаптації на весь екран */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0fdfa; /* teal-50 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
+        .slide {
+            flex-grow: 1;
+            padding: 3rem 4rem; /* Трохи більше відступів для читабельності */
+            display: none;
+            overflow-y: auto;
+            align-content: center; /* Центрування контенту по вертикалі, якщо мало тексту */
+        }
+        .slide.active {
+            display: block;
+        }
+        /* Стилі для контенту */
+        h1 { font-size: 4.5rem; line-height: 1; font-weight: 800; color: #0d9488; margin-bottom: 1.5rem; } /* teal-600 */
+        h2 { font-size: 3.5rem; font-weight: 700; color: #0f766e; margin-bottom: 2rem; } /* teal-700 */
+        h3 { font-size: 2.25rem; font-weight: 600; color: #115e59; margin-bottom: 1.5rem; } /* teal-800 */
+        p, li { font-size: 1.5rem; color: #374151; margin-bottom: 1rem; line-height: 1.5; }
+        
+        .highlight { color: #0d9488; font-weight: bold; }
+        
+        /* Таблиці */
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; border: 2px solid #ccfbf1; }
+        th, td { padding: 1rem; border-bottom: 1px solid #e5e7eb; text-align: left; font-size: 1.25rem; }
+        th { background-color: #f0fdfa; color: #0f766e; }
+
+        /* Адаптація для мобільних */
+        @media (max-width: 768px) {
+            .slide { padding: 1.5rem; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            p, li { font-size: 1.125rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+
+    <!-- Слайд 1: Титульний -->
+    <div class="slide active">
+        <div class="flex flex-col h-full justify-center text-center">
+            <p class="text-2xl text-gray-500 mb-4 uppercase tracking-widest">9 клас. Інформатика</p>
+            <h1>ФІЛЬТРУВАННЯ ДАНИХ</h1>
+            <h2 class="text-4xl font-light text-gray-600">Прості та розширені фільтри в Google Таблицях</h2>
+            <div class="mt-12">
+                <span class="text-6xl">🌪️ 📊 🔍</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Слайд 2: Що таке Фільтр? -->
+    <div class="slide">
+        <h2>Що таке фільтрування?</h2>
+        <div class="flex flex-col md:flex-row gap-8 items-center">
+            <div class="md:w-1/2">
+                <p><strong>Фільтрування</strong> — це процес вибору з великого списку даних лише тих рядків, які відповідають певним умовам (критеріям).</p>
+                <div class="bg-teal-50 p-6 rounded-xl border-l-8 border-teal-500 mt-6">
+                    <p class="italic mb-0">"Я хочу бачити не весь список учнів школи, а тільки 9-й клас."</p>
+                </div>
+            </div>
+            <div class="md:w-1/2 bg-gray-100 p-8 rounded-2xl">
+                <h3 class="text-center">Аналогія: Інтернет-магазин</h3>
+                <ul class="list-disc ml-6 space-y-2">
+                    <li>Ви заходите на Rozetka чи Prom.</li>
+                    <li>Товарів тисячі.</li>
+                    <li>Ви ставите галочки: <br>✅ Бренд: <strong>Samsung</strong><br>✅ Ціна: <strong>до 10 000 грн</strong></li>
+                    <li>Зайве зникає. Це і є фільтр!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Слайд 3: Сортування VS Фільтрування -->
+    <div class="slide">
+        <h2>Різниця між операціями</h2>
+        <table class="shadow-lg">
+            <thead>
+                <tr>
+                    <th class="w-1/2">СОРТУВАННЯ (минулий урок) ↕️</th>
+                    <th class="w-1/2">ФІЛЬТРУВАННЯ (цей урок) 🌪️</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Змінює порядок</strong> рядків.</td>
+                    <td><strong>Приховує</strong> зайві рядки.</td>
+                </tr>
+                <tr>
+                    <td>Усі дані залишаються на екрані.</td>
+                    <td>На екрані тільки те, що ви шукали.</td>
+                </tr>
+                <tr>
+                    <td>Приклад: Вишикувати учнів за зростом.</td>
+                    <td>Приклад: Попросити вийти зі строю тільки дівчат.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Слайд 4: Як увімкнути? -->
+    <div class="slide">
+        <h2>Як створити фільтр?</h2>
+        <p>У Google Таблицях це робиться одним кліком:</p>
+        
+        <ol class="list-decimal ml-8 space-y-4 font-semibold text-gray-700 text-2xl">
+            <li>Виділіть будь-яку клітинку в таблиці (або заголовки).</li>
+            <li>Натисніть на іконку "Лійка" <span class="text-3xl"></span> на панелі інструментів.</li>
+            <li>Або через меню: <span class="bg-gray-200 px-2 py-1 rounded">Дані</span> &rarr; <span class="bg-gray-200 px-2 py-1 rounded">Створити фільтр</span>.</li>
+        </ol>
+
+        <p class="mt-8 text-teal-700">Після цього біля кожного заголовка з'явиться маленький трикутник (🔽). Це пульт керування фільтром.</p>
+    </div>
+
+    <!-- Слайд 5: Прості фільтри -->
+    <div class="slide">
+        <h2>1. Прості фільтри (За значенням)</h2>
+        <p>Це найпростіший спосіб: ви просто ставите або знімаєте галочки.</p>
+        
+        <div class="grid grid-cols-2 gap-8 mt-6">
+            <div class="border-4 border-teal-100 p-6 rounded-xl">
+                <h3>Як це виглядає:</h3>
+                <ul class="list-none space-y-2">
+                    <li>🔲 (Вибрати все)</li>
+                    <li>✅ <strong>Київ</strong></li>
+                    <li>🔲 Львів</li>
+                    <li>✅ <strong>Одеса</strong></li>
+                    <li>🔲 Харків</li>
+                </ul>
+            </div>
+            <div class="flex flex-col justify-center">
+                <p><strong>Застосування:</strong> Коли варіантів небагато і ви хочете вибрати конкретні пункти.</p>
+                <p><em>Приклад: Показати товари тільки категорії "Ноутбуки" та "Планшети".</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Слайд 6: Розширені фільтри -->
+    <div class="slide">
+        <h2>2. Фільтрування за умовою</h2>
+        <p>Що робити, якщо треба знайти товари дешевші за 500 грн? Галочки ставити довго.</p>
+        <p>Тут допомагає <strong>"Фільтрувати за умовою"</strong>.</p>
+
+        <table class="mt-4 text-lg">
+            <thead class="bg-teal-600 text-white">
+                <tr>
+                    <th>Тип даних</th>
+                    <th>Приклади умов</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Числа</strong></td>
+                    <td>"Більше ніж 10", "Між 100 і 200", "Дорівнює 5"</td>
+                </tr>
+                <tr>
+                    <td><strong>Текст</strong></td>
+                    <td>"Містить слово 'Pro'", "Починається з 'А'", "Точно збігається"</td>
+                </tr>
+                <tr>
+                    <td><strong>Дати</strong></td>
+                    <td>"Дата раніше ніж...", "Дата — сьогодні"</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Слайд 7: Приклад використання -->
+    <div class="slide">
+        <h2>Приклад: Аналіз оцінок</h2>
+        <p>У нас є журнал оцінок. Завдання: знайти відмінників.</p>
+        
+        <div class="bg-white border shadow-md p-4 rounded-lg w-full md:w-3/4 mx-auto mb-6">
+            <table class="w-full text-base border-none">
+                <tr class="bg-gray-100 border-b"><th>Учень</th><th>Оцінка</th></tr>
+                <tr><td>Іванов</td><td>8</td></tr>
+                <tr class="bg-green-100 font-bold"><td>Петренко</td><td>11</td></tr>
+                <tr><td>Сидоренко</td><td>6</td></tr>
+                <tr class="bg-green-100 font-bold"><td>Коваленко</td><td>10</td></tr>
+            </table>
+        </div>
+
+        <p><strong>Дії:</strong></p>
+        <ol class="list-decimal ml-8">
+            <li>Натискаємо 🔽 біля стовпця "Оцінка".</li>
+            <li>Вибираємо <strong>"Фільтрувати за умовою"</strong>.</li>
+            <li>Вибираємо <strong>"Більше або дорівнює"</strong>.</li>
+            <li>Вписуємо число <strong>10</strong>.</li>
+        </ol>
+        <p class="text-right text-teal-600 font-bold mt-2">Результат: Залишаться тільки Петренко і Коваленко.</p>
+    </div>
+
+    <!-- Слайд 8: Вступ до практичної -->
+    <div class="slide">
+        <div class="flex flex-col items-center justify-center h-full text-center">
+            <h2 class="text-6xl mb-8">Підсумкова Практична Робота</h2>
+            <p class="text-2xl max-w-4xl">Ми завершили блок тем по роботі з даними. <br>Настав час об'єднати всі знання: форматування, формули, сортування та фільтри.</p>
+            <div class="mt-12 bg-yellow-100 border-l-8 border-yellow-500 p-6 text-left max-w-2xl">
+                <p class="text-yellow-800 font-bold mb-2">📅 Дедлайн:</p>
+                <p class="text-yellow-900 mb-0">Понеділок</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Слайд 9: Завдання (Частина 1) -->
+    <div class="slide">
+        <h2>Завдання: "Магазин Гаджетів" 📱</h2>
+        <p>Створіть нову Google Таблицю.</p>
+        
+        <h3 class="mt-6 text-teal-700">1. Введення даних та Форматування</h3>
+        <ul class="list-disc ml-8 space-y-2 text-lg">
+            <li>Створіть стовпці: <strong>Назва товару, Категорія, Ціна (грн), Кількість, Сума</strong>.</li>
+            <li>Введіть мінімум <strong>10 товарів</strong> (різні категорії: Телефон, Ноутбук, Навушники).</li>
+            <li>Для стовпця "Ціна" та "Сума" встановіть формат даних <strong>"Валюта"</strong> або "Число".</li>
+        </ul>
+
+        <h3 class="mt-6 text-teal-700">2. Формули</h3>
+        <ul class="list-disc ml-8 space-y-2 text-lg">
+            <li>У стовпці <strong>Сума</strong> розрахуйте вартість залишків: <br><code class="bg-gray-200 p-1 rounded">= Ціна * Кількість</code></li>
+            <li>Внизу таблиці підрахуйте <strong>Загальну вартість</strong> всіх товарів (функція <code>SUM</code>).</li>
+        </ul>
+    </div>
+
+    <!-- Слайд 10: Завдання (Частина 2) -->
+    <div class="slide">
+        <h2>Завдання (Продовження)</h2>
+        
+        <h3 class="mt-6 text-teal-700">3. Сортування</h3>
+        <ul class="list-disc ml-8 space-y-2 text-lg">
+            <li>Відсортуйте всю таблицю за <strong>Ціною</strong>: від найдорожчого до найдешевшого (Z -> A).</li>
+        </ul>
+
+        <h3 class="mt-6 text-teal-700">4. Фільтрування (Головне!)</h3>
+        <p>Оскільки фільтр приховує дані, зробіть наступне:</p>
+        <ul class="list-disc ml-8 space-y-2 text-lg">
+            <li>Увімкніть фільтр для таблиці.</li>
+            <li>Налаштуйте фільтр так, щоб показати тільки товари, де: <br><strong>Кількість менша за 5</strong> (треба дозамовити) <br>АБО <br><strong>Ціна більша за 20 000 грн</strong>.</li>
+            <li><em>(Залиште таблицю у відфільтрованому стані при здачі роботи).</em></li>
+        </ul>
+    </div>
+
+    <!-- Панель навігації / Футер -->
+    <div class="flex flex-col sm:flex-row justify-between items-center w-full p-4 bg-teal-50 border-t border-teal-200 text-sm fixed bottom-0 left-0 right-0 h-20 z-10">
+        
+        <!-- Ліва частина: Посилання -->
+        <div class="flex space-x-6 mb-2 sm:mb-0 w-1/3">
+            <a href="./sort.html" class="flex items-center text-teal-700 hover:text-teal-900 font-bold transition">
+                <span class="mr-2">←</span> Попередній урок (Сортування)
+            </a>
+        </div>
+        
+        <!-- Центр: Індикатор -->
+        <div class="w-1/3 text-center">
+             <span id="slideIndicator" class="bg-white px-4 py-2 rounded-full shadow text-teal-800 font-bold text-lg">1 / 10</span>
+        </div>
+        
+        <!-- Права частина: Кнопки та Наступний урок -->
+        <div class="flex justify-end items-center space-x-4 w-1/3">
+             <a href="#" class="text-gray-400 cursor-not-allowed font-medium mr-4">Наступний урок →</a> <!-- Поки неактивний -->
+            
+            <button id="prevBtn" class="bg-teal-600 text-white w-12 h-12 rounded-full shadow-lg hover:bg-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center justify-center text-2xl pb-1 focus:outline-none focus:ring-2 focus:ring-teal-400" disabled>
+                &#8249;
+            </button>
+            <button id="nextBtn" class="bg-teal-600 text-white w-12 h-12 rounded-full shadow-lg hover:bg-teal-700 transition flex items-center justify-center text-2xl pb-1 focus:outline-none focus:ring-2 focus:ring-teal-400">
+                &#8250;
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideIndicator = document.getElementById('slideIndicator');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function updateSlide() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            if (index === currentSlide) {
+                slide.classList.add('active');
+            }
+        });
+
+        // Оновлення індикатора
+        slideIndicator.textContent = `${currentSlide + 1} / ${totalSlides}`;
+
+        // Оновлення стану кнопок
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+    }
+
+    function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateSlide();
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlide();
+        }
+    }
+
+    // Слухачі подій для кнопок
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    // Слухач подій для клавіатури
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
+
+    // Ініціалізація
+    updateSlide();
+</script>
+
+</body>
+</html>
